@@ -1,0 +1,40 @@
+.DS_Store
+node_modules
+dist/
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.sublime-*
+*.code-*
+
+# Cypress and friends
+tests/e2e-cypress/downloads
+tests/e2e-cypress/videos
+tests/e2e-cypress/screenshots
+tests/results/*
+
+# Git
+*.orig
+
+# script check-external-layers-providers.mjs
+scripts/check-layer-providers-results/*invalid_providers_cors.yaml
+scripts/check-layer-providers-results/*invalid_providers.yaml
+scripts/check-layer-providers-results/*invalid_providers_wms.yaml
+scripts/check-layer-providers-results/*invalid_providers_wmts.yaml
+scripts/check-layer-providers-results/*invalid_providers_content.yaml
+scripts/check-layer-providers-results/*valid_providers.json
