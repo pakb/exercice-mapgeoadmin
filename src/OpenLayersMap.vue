@@ -7,7 +7,11 @@ import View from 'ol/View'
 // a good way of importing external framework CSS in modern JS is to add the CSS directly in the imports
 // although many framework now do that for you (OL doesn't)
 import 'ol/ol.css'
-import { getSwisstopoWMSSingleImageLayer, getSwisstopoWMTSLayer } from './swisstopo/swisstopoLayerUtils'
+import {
+    getSwisstopoWMSSingleImageLayer,
+    getSwisstopoWMTSLayer,
+} from './swisstopo/swisstopoLayerUtils'
+import { identifyFeatures } from './swisstopo/swisstopoIdentifyUtils'
 
 let map
 // the mounted lifecycle hook is run after the component is added to the page
@@ -31,6 +35,30 @@ onMounted(() => {
             zoom: 2,
             projection: 'EPSG:2056',
         }),
+    })
+
+    // registering an event handler on map click
+    map.on('click', (event) => {
+        // OpenLayers gives us where the click occured through the event
+        const clickCoordinates = event.coordinate
+        // the map's view can also give us the extent we are rendering (the area the map covers,
+        // it is expressed as [bottom-left, top-right] coordinates)
+        const mapExtent = map.getView().calculateExtent()
+        // asking Swisstopo if there is some feature under the mouse cursor
+        identifyFeatures(
+            clickCoordinates,
+            mapExtent,
+            // it is mandatory to tell which layer we want to know if there is a feature
+            'ch.kantone.cadastralwebmap-farbe'
+        )
+            // identifyFeatures returns a promise, we have to handle it through lambda functions
+            // mapping response's results for ease of use later on
+            .then((response) => response.data.results)
+            .then((foundFeatures) => {
+                foundFeatures.forEach((feature) => {
+                    console.log('feature found', feature)
+                })
+            })
     })
 })
 
