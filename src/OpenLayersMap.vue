@@ -7,7 +7,7 @@ import View from 'ol/View'
 // a good way of importing external framework CSS in modern JS is to add the CSS directly in the imports
 // although many framework now do that for you (OL doesn't)
 import 'ol/ol.css'
-import { getSwisstopoWMTSLayer } from './swisstopo/swisstopoLayerUtils'
+import { getSwisstopoWMSSingleImageLayer, getSwisstopoWMTSLayer } from './swisstopo/swisstopoLayerUtils'
 
 let map
 // the mounted lifecycle hook is run after the component is added to the page
@@ -19,6 +19,8 @@ onMounted(() => {
         layers: [
             // Switching from OSM layer to Swisstopo National map
             getSwisstopoWMTSLayer('ch.swisstopo.pixelkarte-farbe'),
+            // Adding a second layer on top of the national map
+            getSwisstopoWMSSingleImageLayer('ch.kantone.cadastralwebmap-farbe'),
         ],
         // this refers to the HTML ID of the div defined above in the template
         target: 'map',
