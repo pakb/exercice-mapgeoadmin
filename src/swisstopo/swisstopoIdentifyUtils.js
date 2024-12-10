@@ -3,7 +3,7 @@ import axios from 'axios'
 /**
  * Identify features at the coordinates in the given layer
  * @param {Number[]} coordinates Coordinates where we want to identify features, expressed in EPSG:2056
- * @param {Number[] mapExtent The current extent of the map (bottom-left / top-right coordinates) expressed in EPSG:2056
+ * @param {Number[]} mapExtent The current extent of the map (bottom-left / top-right coordinates) expressed in EPSG:2056
  * @param {String} layerId Swisstopo unique layer identifier
  */
 export function identifyFeatures(coordinates, mapExtent, layerId) {

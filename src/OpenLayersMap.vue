@@ -1,13 +1,13 @@
 <script setup>
 import { onMounted } from 'vue'
 
-import Map from 'ol/Map.js'
-import OSM from 'ol/source/OSM.js'
-import TileLayer from 'ol/layer/Tile.js'
-import View from 'ol/View.js'
+import Map from 'ol/Map'
+import OSM from 'ol/source/OSM'
+import TileLayer from 'ol/layer/Tile'
+import View from 'ol/View'
 
 // a good way of importing external framework CSS in modern JS is to add the CSS directly in the imports
-// althought many framework now do that for you (OL doesn't)
+// although many framework now do that for you (OL doesn't)
 import 'ol/ol.css'
 
 let map
@@ -35,8 +35,8 @@ onMounted(() => {
     })
 })
 
-// solution for first step, replacing OSM with a Swisstopo map, can be found here
-// https://codesandbox.io/p/sandbox/basic-pixelkarte-farbe-627vvc
+// solution for the first step: checkout git branch "step-1"
+// git checkout step-1
 </script>
 
 <template>

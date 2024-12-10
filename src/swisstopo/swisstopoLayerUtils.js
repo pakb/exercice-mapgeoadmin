@@ -1,9 +1,9 @@
-import ImageLayer from 'ol/layer/Image.js'
-import TileLayer from 'ol/layer/Tile.js'
+import ImageLayer from 'ol/layer/Image'
+import TileLayer from 'ol/layer/Tile'
 import { get as getProjection } from 'ol/proj'
-import ImageWMS from 'ol/source/ImageWMS.js'
+import ImageWMS from 'ol/source/ImageWMS'
 import TileGrid from 'ol/tilegrid/TileGrid'
-import XYZ from 'ol/source/XYZ.js'
+import XYZ from 'ol/source/XYZ'
 
 const swissLV95projection = getProjection('EPSG:2056')
 

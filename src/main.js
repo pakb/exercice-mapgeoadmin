@@ -1,4 +1,7 @@
 import { get as getProjection } from 'ol/proj'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTimesCircle, faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import { register } from 'ol/proj/proj4'
 import proj4 from 'proj4'
 import { createApp } from 'vue'
@@ -15,10 +18,13 @@ proj4.defs(
 register(proj4)
 
 // helping OpenLayers handle this projection by setting its extent (it will then not ask for tiles
-// or data if the view is outside of the extent, meaning less HTML requests ending in error)
+// or data if the view is outside the extent, meaning less HTML requests ending in error)
 const swissLV95projection = getProjection('EPSG:2056')
 swissLV95projection.setExtent([2420000, 1030000, 2900000, 1350000])
 
+library.add(faTimesCircle, faUpRightFromSquare)
+
 // mounting the app on the component with the HTML ID app
 const app = createApp(App)
+app.component('FontAwesomeIcon', FontAwesomeIcon)
 app.mount('#app')
