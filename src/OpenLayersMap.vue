@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 import Map from 'ol/Map'
 import View from 'ol/View'
@@ -12,6 +12,9 @@ import {
     getSwisstopoWMTSLayer,
 } from './swisstopo/swisstopoLayerUtils'
 import { identifyFeatures } from './swisstopo/swisstopoIdentifyUtils'
+import FeatureList from './FeatureList.vue'
+
+const features = ref([])
 
 let map
 // the mounted lifecycle hook is run after the component is added to the page
@@ -55,9 +58,7 @@ onMounted(() => {
             // mapping response's results for ease of use later on
             .then((response) => response.data.results)
             .then((foundFeatures) => {
-                foundFeatures.forEach((feature) => {
-                    console.log('feature found', feature)
-                })
+                features.value = [...foundFeatures]
             })
     })
 })
@@ -68,6 +69,12 @@ onMounted(() => {
 
 <template>
     <div id="map" />
+    <FeatureList
+        v-if="features.length > 0"
+        class="position-absolute bottom-0 start-50 translate-middle-x"
+        :features="features"
+        @close="features = []"
+    />
 </template>
 
 <style scoped>
